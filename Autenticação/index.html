@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Firebase login</title>
+</head>
+<body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC8SMAmtbS7eAEcjLZvoQ4E0h37fKma0PU",
+      authDomain: "authjs-3beae.firebaseapp.com",
+      databaseURL: "https://authjs-3beae-default-rtdb.firebaseio.com",
+      projectId: "authjs-3beae",
+      storageBucket: "authjs-3beae.appspot.com",
+      messagingSenderId: "553954833257",
+      appId: "1:553954833257:web:b1dd22ca90686229bf83f8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+        function cadastrar(){
+            var auth = null;
+            firebase.auth().createUserWithEmailAndPassword(document.getElementById("email").value, document.getElementById("senha").value)
+                .then(function(user){
+                   alert("Cadastrado com sucesso");
+                   auth = user;
+                }).catch(function(error){
+                    alert("Falha ao cadastrar");
+                });
+        }
+
+        function login(){
+            var auth = null;
+            firebase.auth().signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("senha").value)
+                .then(function(user){
+                   alert("Logado com sucesso");
+                   auth = user;
+                }).catch(function(error){
+                    alert("Falha ao logar");
+                });
+        }
+
+      </script>
+
+        <section class="section-form">
+            <form>
+                <h1 class="titulo">Log-in e Cadastro</h1>
+                <label class="campos">Nome:</label>
+                      <input type="text" id="nome" class="tbox"><br>
+                <label class="campos">E-mail:</label>
+                      <input type="text" id="email" class="tbox"><br>
+                <label class="campos">Senha:</label>
+                      <input type="password" id="senha" class="tbox"><br>
+                      <button onclick="cadastrar()" class="button" id="cadastro">Cadastrar</button><br>
+                      <button onclick="login()" class="button" id="login">Entrar</button>
+            </form>
+        </section>
+</body>
+</html>
